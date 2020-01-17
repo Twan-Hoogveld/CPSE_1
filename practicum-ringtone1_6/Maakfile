@@ -1,0 +1,19 @@
+binaries = melody.cpp generator.o note_printer.o rtttl_player.o make_melody.exe
+
+melody.cpp: generator.o note_printer.o rtttl_player.o 
+	g++ -std=c++17  generator.o note_printer.o rtttl_player.o -o make_melody.exe
+	chmod u+x make_melody.exe
+	./make_melody.exe
+	make run    
+
+generator.o: generator.cpp  
+	g++ -std=c++17 -c generator.cpp 
+
+note_printer.o: note_printer.cpp
+	g++ -std=c++17 -c note_printer.cpp
+
+rtttl_player.o: rtttl_player.cpp
+	g++ -std=c++17 -c rtttl_player.cpp
+    
+clean:
+	rm -f $(binaries) *.o     
